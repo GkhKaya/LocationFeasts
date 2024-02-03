@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  LocationFeasts
+
+  Created by Gokhan Kaya on 3.02.2024.
+  
+*/
+"findNearbyRestaurants" = "Find nearby restaurants";
+"whichFoodDoYouWantToFind" = "Which food do you want to find";
+"cheapRestaurant" = "Cheap restaurant";
+"mediumPricedRestaurant" = "Medium priced restaurant";
+"expensiveRestaurant"  = "Expensive Restaurant";
+"location" = "location";
+"isClosed" = "Is Closed";
+"rating" = "Rating";
+"address" = "address";

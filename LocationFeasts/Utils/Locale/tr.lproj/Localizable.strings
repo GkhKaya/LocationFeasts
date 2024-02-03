@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  LocationFeasts
+
+  Created by Gokhan Kaya on 3.02.2024.
+  
+*/
+
+
+"findNearbyRestaurants" = "Yakındaki Restorantları Bul";
+"whichFoodDoYouWantToFind" = "Hangi yemeği aramak istersin";
+"cheapRestaurant" = "Ucuz Restorantlar";
+"mediumPricedRestaurant" = "Orta Ücretli Restorantlar";
+"expensiveRestaurant"  = "Pahalı Restorantlar";
+"location" = "Lokasyon";
+"isClosed" = "Açık mı";
+"rating" = "Puan";
+"address" = "Adres";
