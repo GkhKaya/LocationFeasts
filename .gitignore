@@ -15,6 +15,7 @@ xcuserdata/
 **/node_modules/*
 **/.firebaserc
 *.GoogleService-Info.plist
+LocationFeasts/ApiKey/
 
 ### Firebase Patch ###
 .runtimeconfig.json
