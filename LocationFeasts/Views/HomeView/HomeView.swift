@@ -49,6 +49,8 @@ struct HomeView: View {
               HStack {
                 Text(LocalKeys.Home.cheapRestaurant.rawValue.locale())
                   .modifier(DisplayLargeRegular())
+                  
+                  
                 Spacer()
               }
 
