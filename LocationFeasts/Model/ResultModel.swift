@@ -1,13 +1,3 @@
-//
-//  ResultModel.swift
-//  LocationFeasts
-//
-//  Created by Gokhan Kaya on 5.02.2024.
-//
-
-import Foundation
-
-
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
@@ -30,10 +20,9 @@ struct Business: Codable {
     let url: String?
     let reviewCount: Int?
     let categories: [Category]?
-    let rating: Double?
+    let rating: Int?
     let coordinates: Center?
     let transactions: [JSONAny]?
-    let price: Price?
     let location: Location?
     let phone, displayPhone: String?
     let distance: Double?
@@ -44,7 +33,7 @@ struct Business: Codable {
         case isClosed = "is_closed"
         case url
         case reviewCount = "review_count"
-        case categories, rating, coordinates, transactions, price, location, phone
+        case categories, rating, coordinates, transactions, location, phone
         case displayPhone = "display_phone"
         case distance
     }
@@ -62,12 +51,9 @@ struct Center: Codable {
 
 // MARK: - Location
 struct Location: Codable {
-    let address1: String?
-    let address2, address3: String?
-    let city: City?
-    let zipCode: String?
-    let country: Country?
-    let state: String?
+    let address1, address2: String?
+    let address3: String?
+    let city, zipCode, country, state: String?
     let displayAddress: [String]?
 
     enum CodingKeys: String, CodingKey {
@@ -76,20 +62,6 @@ struct Location: Codable {
         case country, state
         case displayAddress = "display_address"
     }
-}
-
-enum City: String, Codable {
-    case istanbul = "Istanbul"
-}
-
-enum Country: String, Codable {
-    case tr = "TR"
-}
-
-enum Price: String, Codable {
-    case empty = "₺₺"
-    case price = "₺₺₺₺"
-    case purple = "₺₺₺"
 }
 
 // MARK: - Region

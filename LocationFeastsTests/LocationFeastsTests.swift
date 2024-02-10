@@ -6,7 +6,7 @@
 //
 
 import XCTest
-
+import Alamofire
 @testable import LocationFeasts
 final class LocationFeastsTests: XCTestCase {
 
@@ -35,12 +35,18 @@ final class LocationFeastsTests: XCTestCase {
     
     func testFetchApiResult() async throws{
         let networkManager = NetworkManager()
-
+        let headers : HTTPHeaders=[
+            .authorization(RestApiKey.key)
+        ]
+        let paramaters: Parameters=[
+            "location" : "edirne",
+            "term": "kebap"
+        ]
         do{
-            let response = try await networkManager.fetchResult(location: "İSTANBUL", terms: "kebap")
+            let response = try await networkManager.fetchResult(url: "https://api.yelp.com/v3/businesses/search",headers: headers,parameters: paramaters,type: ResultModel.self)
             XCTAssertEqual(response?.businesses?.isEmpty, false)
         }catch{
-            XCTFail("Your service has error (error)")
+            XCTFail("Your service has error \(error)")
         }
     }
 

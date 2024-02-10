@@ -7,22 +7,23 @@
 
 import Foundation
 import Alamofire
-final class NetworkManager{
 
-    func fetchResult(location:String,terms:String) async throws -> ResultModel?{
+protocol INetworkManager{
+    func fetchResult<T:Codable>(url:String,headers:HTTPHeaders?,parameters: Parameters?,type:T.Type) async throws ->T?
+}
 
-        let headers : HTTPHeaders=[
-            .authorization(RestApiKey.key)
-        ]
+final class NetworkManager : INetworkManager{
+    
+    func fetchResult<T:Codable>(url:String,headers:HTTPHeaders? ,parameters: Parameters?,type:T.Type) async throws -> T?{
 
-        let dataRequest  = AF.request("https://api.yelp.com/v3/businesses/search?terms=\(terms)&location=\(location)",method: .get,headers: headers)
+        let dataRequest  = AF.request(url, method: .get,parameters: parameters,headers: headers)
             .validate()
-            .serializingDecodable(ResultModel.self)
+            .serializingDecodable(T.self)
 
         let result  = await dataRequest.response
 
         guard let value = result.value else{
-            print("Error : (String(describing:result.error))")
+            print("Error : \(String(describing:result.error))")
             return nil
         }
         return value
