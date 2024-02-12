@@ -14,3 +14,4 @@
 "isClosed" = "Açık mı";
 "rating" = "Puan";
 "address" = "Adres";
+"restaurantIsNotExist" = "Restorant mevcut değil";

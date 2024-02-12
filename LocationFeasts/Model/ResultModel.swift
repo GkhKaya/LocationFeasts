@@ -20,9 +20,10 @@ struct Business: Codable {
     let url: String?
     let reviewCount: Int?
     let categories: [Category]?
-    let rating: Int?
+    let rating: Double?
     let coordinates: Center?
     let transactions: [JSONAny]?
+    let price: String?
     let location: Location?
     let phone, displayPhone: String?
     let distance: Double?
@@ -33,7 +34,7 @@ struct Business: Codable {
         case isClosed = "is_closed"
         case url
         case reviewCount = "review_count"
-        case categories, rating, coordinates, transactions, location, phone
+        case categories, rating, coordinates, transactions, price, location, phone
         case displayPhone = "display_phone"
         case distance
     }
@@ -51,9 +52,13 @@ struct Center: Codable {
 
 // MARK: - Location
 struct Location: Codable {
-    let address1, address2: String?
+    let address1: String?
+    let address2: String?
     let address3: String?
-    let city, zipCode, country, state: String?
+    let city: String?
+    let zipCode: String?
+    let country: String?
+    let state: String?
     let displayAddress: [String]?
 
     enum CodingKeys: String, CodingKey {
@@ -63,6 +68,7 @@ struct Location: Codable {
         case displayAddress = "display_address"
     }
 }
+
 
 // MARK: - Region
 struct Region: Codable {

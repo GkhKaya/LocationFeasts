@@ -18,6 +18,7 @@ struct LocalKeys {
         case isClosed = "isClosed"
         case rating = "rating"
         case address = "address"
+        case restaurantIsNotExist = "Restaurant is not exist"
     }
 }
 

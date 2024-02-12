@@ -9,32 +9,46 @@ import Foundation
 import SwiftUI
 import Alamofire
 final class HomeViewViewModel : ObservableObject{
-    @Published var terms: String = ""
+    @Published var term: String {
+        didSet {
+            UserDefaults.standard.set(term, forKey: "savedTerm")
+        }
+    }
     @Published var resultData : ResultModel?
-    let location  : String? = nil
-    let term: String? = nil
-    
+    @Published var location  : String = ""
     let networkManager  = NetworkManager()
     
+    init(term: String = "kebap") {
+        self.term = UserDefaults.standard.string(forKey: "savedTerm") ?? term
+    }
     
     
-    func getResultData() async throws{
+    func getResultData() async {
         
         let headers : HTTPHeaders=[
             .authorization(RestApiKey.key)
         ]
         let paramaters: Parameters=[
-            "location" : location,
+            "location" : "newyork",
             "term": term
         ]
         
         do{
-            let resultData = try await networkManager.fetchResult(url: "https://api.yelp.com/v3/businesses/search",headers: headers,parameters: paramaters,type: ResultModel.self)
-            self.resultData = resultData
+            let result = try await networkManager.fetchResult(url: "https://api.yelp.com/v3/businesses/search",headers: headers,parameters: paramaters,type: ResultModel.self)
+            self.resultData = result
+            print(result?.businesses)
         }catch(let error){
             print(error.localizedDescription)
         }
-        
     }
     
+    func filterData(withCount wantCount: Int,price:String?) -> Bool {
+        guard let rPrice = price else { return false }
+        let characterArray = rPrice.map { String($0) }
+        let count = characterArray.count
+        return count == wantCount
+        
+    }
 }
+
+

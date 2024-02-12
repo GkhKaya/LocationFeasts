@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var isSheetPresented: Bool = false
+
   @ObservedObject var vm = HomeViewViewModel()
   var body: some View {
     NavigationStack {
@@ -20,24 +22,38 @@ struct HomeView: View {
             //                        Search Bar
             HStack {
               HStack {
-                
+
                 Image(systemName: "magnifyingglass")
                   .resizable()
                   .frame(width: geometry.dw(width: 0.06), height: geometry.dh(height: 0.03))
                   .padding(.all, 12)
-                  
-                  
+
                 TextField(
-                    LocalKeys.Home.whichFoodDoYouWantToFind.rawValue.locale(), text: $vm.terms).keyboardType(.default).textInputAutocapitalization(.never)
+                  LocalKeys.Home.whichFoodDoYouWantToFind.rawValue.locale(), text: $vm.term,
+                  onEditingChanged: { isEditing in
+                    if !isEditing {
+                      Task {
+                        await vm.getResultData()
+                      }
+                    }
+                  }, onCommit: {})
               }
               .background(Color.nero)
               .clipShape(RoundedRectangle(cornerRadius: ProjectRadius.large.rawValue))
               .padding(.trailing, ProjectPaddings.normal.rawValue)
 
-              Image(systemName: "location.fill")
-                .resizable()
-                .tint(.white)
-                .frame(width: geometry.dw(width: 0.06), height: geometry.dh(height: 0.03))
+                Button{
+                    isSheetPresented.toggle()
+                }label:{
+                    Image(systemName: "location.fill")
+                      .resizable()
+                      .tint(.white)
+                      .frame(width: geometry.dw(width: 0.06), height: geometry.dh(height: 0.03))
+                }
+                .sheet(isPresented: $isSheetPresented) {
+                                ContentView()
+                            }
+              
             }
             .padding(.top, ProjectPaddings.large.rawValue)
 
@@ -45,50 +61,91 @@ struct HomeView: View {
             AdAreaSub(geometry: geometry)
 
             //                        Cheap Restorants
-            VStack {
+
+            HStack {
+              Text(LocalKeys.Home.cheapRestaurant.rawValue.locale())
+                .modifier(DisplayMediumBold())
+              Spacer()
+            }.padding(.top, ProjectPaddings.large.rawValue)
+            ScrollView(.horizontal) {
               HStack {
-                Text(LocalKeys.Home.cheapRestaurant.rawValue.locale())
-                  .modifier(DisplayLargeRegular())
-                  
-                  
-                Spacer()
+                  if let filteredData = vm.resultData?.businesses?.filter({ data in
+                      vm.filterData(withCount: 1, price: data.price)
+                  }), !filteredData.isEmpty {
+                    ForEach(filteredData, id: \.id) { data in
+                      NavigationLink(destination: ContentView()) {
+                        RestaurantCards(
+                          restaurantName: data.name ?? "",
+                          imageUrl: data.imageURL ?? "",
+                          rating: data.rating ?? 0.0
+                        )
+                      }
+                    }
+                  } else {
+                      Text(LocalKeys.Home.restaurantIsNotExist.rawValue.locale())
+                  }
               }
+            }
+            //                        Medium Priced Restorants
 
+            HStack {
+              Text(LocalKeys.Home.mediumPricedRestaurant.rawValue.locale())
+                .modifier(DisplayMediumBold())
+              Spacer()
+            }.padding(.top, ProjectPaddings.large.rawValue)
+            ScrollView(.horizontal) {
               HStack {
-
+                  if let filteredData = vm.resultData?.businesses?.filter({ data in
+                      vm.filterData(withCount: 2, price: data.price)
+                  }), !filteredData.isEmpty {
+                    ForEach(filteredData, id: \.id) { data in
+                      NavigationLink(destination: ContentView()) {
+                        RestaurantCards(
+                          restaurantName: data.name ?? "",
+                          imageUrl: data.imageURL ?? "",
+                          rating: data.rating ?? 0.0
+                        )
+                      }
+                    }
+                  } else {
+                      Text(LocalKeys.Home.restaurantIsNotExist.rawValue.locale())
+                  }
               }
-            }.padding(.top, ProjectPaddings.normal.rawValue)
+            }
 
-            //                        Medium Priced Restaurant
-            VStack {
+            //                        Expensive Restorants
+
+            HStack {
+              Text(LocalKeys.Home.expensiveRestaurant.rawValue.locale())
+                .modifier(DisplayMediumBold())
+              Spacer()
+            }.padding(.top, ProjectPaddings.large.rawValue)
+            ScrollView(.horizontal) {
               HStack {
-                Text(LocalKeys.Home.mediumPricedRestaurant.rawValue.locale())
-                  .modifier(DisplayLargeRegular())
-                Spacer()
+                if let filteredData = vm.resultData?.businesses?.filter { data in
+                  vm.filterData(withCount: 3, price: data.price)
+                }, !filteredData.isEmpty {
+                  ForEach(filteredData, id: \.id) { data in
+                    NavigationLink(destination: ContentView()) {
+                      RestaurantCards(
+                        restaurantName: data.name ?? "",
+                        imageUrl: data.imageURL ?? "",
+                        rating: data.rating ?? 0.0
+                      )
+                    }
+                  }
+                } else {
+                    Text(LocalKeys.Home.restaurantIsNotExist.rawValue.locale())
+                }
               }
-
-              HStack {
-
-              }
-            }.padding(.top, ProjectPaddings.normal.rawValue)
-
-//                        Expensive Restaurant
-            VStack {
-              HStack {
-                  Text(LocalKeys.Home.expensiveRestaurant.rawValue.locale())
-                  .modifier(DisplayLargeRegular())
-                Spacer()
-              }
-
-              HStack {
-
-              }
-            }.padding(.top, ProjectPaddings.normal.rawValue)
+            }
 
           }.padding(.horizontal, ProjectPaddings.normal.rawValue)
 
         }
       }
+    }.task {
+      await vm.getResultData()
     }
   }
 }

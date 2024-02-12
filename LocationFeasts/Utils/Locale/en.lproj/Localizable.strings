@@ -14,3 +14,4 @@
 "isClosed" = "Is Closed";
 "rating" = "Rating";
 "address" = "address";
+"restaurantIsNotExist" = "Restaurant is not exist";
