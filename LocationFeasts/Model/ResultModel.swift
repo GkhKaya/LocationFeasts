@@ -19,7 +19,7 @@ struct Business: Codable {
     let isClosed: Bool?
     let url: String?
     let reviewCount: Int?
-    let categories: [Category]?
+    let categories: [ResultCategory]?
     let rating: Double?
     let coordinates: Center?
     let transactions: [JSONAny]?
@@ -41,7 +41,7 @@ struct Business: Codable {
 }
 
 // MARK: - Category
-struct Category: Codable {
+struct ResultCategory: Codable {
     let alias, title: String?
 }
 
