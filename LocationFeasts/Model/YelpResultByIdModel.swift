@@ -1,13 +1,3 @@
-//
-//  YelpResultByIdModel.swift
-//  LocationFeasts
-//
-//  Created by Gokhan Kaya on 12.02.2024.
-//
-
-
-
-
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
@@ -17,20 +7,16 @@ import Foundation
 
 // MARK: - YelpResultByIDModel
 struct YelpResultByIDModel: Codable {
-    let byIdbusinesses: [ByIdbusinesses]?
-}
-
-struct ByIdbusinesses: Codable {
     let id, alias, name: String?
     let imageURL: String?
     let isClaimed, isClosed: Bool?
     let url: String?
     let phone, displayPhone: String?
     let reviewCount: Int?
-    let categories: [ByIdCategory]?
+    let categories: [Category]?
     let rating: Double?
-    let location: ByIdLocation?
-    let coordinates: ByIdCoordinates?
+    let location: Location?
+    let coordinates: Coordinates?
     let photos: [String]?
     let price: String?
     let hours: [Hour]?
@@ -45,18 +31,13 @@ struct ByIdbusinesses: Codable {
         case displayPhone = "display_phone"
         case reviewCount = "review_count"
         case categories, rating, location, coordinates, photos, price, hours, transactions
-}
-    
     }
-
-
-// MARK: - Category
-struct ByIdCategory: Codable {
-    let alias, title: String?
 }
+
+
 
 // MARK: - Coordinates
-struct ByIdCoordinates: Codable {
+struct Coordinates: Codable {
     let latitude, longitude: Double?
 }
 
@@ -86,18 +67,7 @@ struct Open: Codable {
 }
 
 // MARK: - Location
-struct ByIdLocation: Codable {
-    let address1, address2,address3: String?
-    let city, zipCode, country, state: String?
-    let displayAddress: [String]?
-    let crossStreets: String?
 
-    enum CodingKeys: String, CodingKey {
-        case address1, address2, address3, city
-        case zipCode = "zip_code"
-        case country, state
-        case displayAddress = "display_address"
-        case crossStreets = "cross_streets"
-    }
-}
+
+
 

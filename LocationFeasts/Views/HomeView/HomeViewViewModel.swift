@@ -36,7 +36,7 @@ final class HomeViewViewModel : ObservableObject{
         do{
             let result = try await networkManager.fetchResult(url: "https://api.yelp.com/v3/businesses/search",headers: headers,parameters: paramaters,type: ResultModel.self)
             self.resultData = result
-            print(result?.businesses)
+       
         }catch(let error){
             print(error.localizedDescription)
         }

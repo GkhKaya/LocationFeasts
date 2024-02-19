@@ -43,8 +43,8 @@ final class LocationFeastsTests: XCTestCase {
             "term": "kebap"
         ]
         do{
-            let response = try await networkManager.fetchResult(url: "https://countriesnow.space/api/v0.1/countries/population/cities",headers: nil,parameters: nil,type: CityModel.self)
-            XCTAssertEqual(response?.data?.isEmpty, false)
+            let response = try await networkManager.fetchResult(url: "https://api.yelp.com/v3/businesses/DW2smOPofF5n_ufLxFIlgg",headers: headers,parameters: nil,type: YelpResultByIDModel.self)
+            XCTAssertEqual(response?.name?.isEmpty, false)
         }catch{
             XCTFail("Your service has error \(error)")
         }

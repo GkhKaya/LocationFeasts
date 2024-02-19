@@ -73,7 +73,7 @@ struct HomeView: View {
                       vm.filterData(withCount: 1, price: data.price)
                   }), !filteredData.isEmpty {
                     ForEach(filteredData, id: \.id) { data in
-                      NavigationLink(destination: ContentView()) {
+                        NavigationLink(destination: DetailView(id: data.id ?? "")) {
                         RestaurantCards(
                           restaurantName: data.name ?? "",
                           imageUrl: data.imageURL ?? "",
@@ -99,7 +99,7 @@ struct HomeView: View {
                       vm.filterData(withCount: 2, price: data.price)
                   }), !filteredData.isEmpty {
                     ForEach(filteredData, id: \.id) { data in
-                      NavigationLink(destination: ContentView()) {
+                        NavigationLink(destination: DetailView(id: data.id ?? "")) {
                         RestaurantCards(
                           restaurantName: data.name ?? "",
                           imageUrl: data.imageURL ?? "",
@@ -126,7 +126,7 @@ struct HomeView: View {
                   vm.filterData(withCount: 3, price: data.price)
                 }, !filteredData.isEmpty {
                   ForEach(filteredData, id: \.id) { data in
-                    NavigationLink(destination: ContentView()) {
+                    NavigationLink(destination: DetailView(id: data.id ?? "")) {
                       RestaurantCards(
                         restaurantName: data.name ?? "",
                         imageUrl: data.imageURL ?? "",
