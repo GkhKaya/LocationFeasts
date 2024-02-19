@@ -20,6 +20,13 @@ struct LocalKeys {
         case address = "address"
         case restaurantIsNotExist = "Restaurant is not exist"
     }
+    enum DetailView: String{
+        case lookLocationWithMap = "lookLocationWithMap"
+        case categories = "categories"
+        case photos = "photos"
+        case open = "open"
+        case close = "close"
+    }
 }
 
 extension String{

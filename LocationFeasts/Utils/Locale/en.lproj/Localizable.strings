@@ -15,3 +15,8 @@
 "rating" = "Rating";
 "address" = "address";
 "restaurantIsNotExist" = "Restaurant is not exist";
+"lookLocationWithMap" = "Look Location with Map";
+"categories" = "Categories";
+"photos" = "Photos";
+"open" = "Opem";
+"close" = "Close";

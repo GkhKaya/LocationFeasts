@@ -15,3 +15,9 @@
 "rating" = "Puan";
 "address" = "Adres";
 "restaurantIsNotExist" = "Restorant mevcut değil";
+"lookLocationWithMap" = "Haritada Gör";
+"categories" = "Kategoriler";
+"photos" = "Fotoğraflar";
+"open" = "Açık";
+"close" = "Kapalı";
+

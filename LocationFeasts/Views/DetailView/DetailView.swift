@@ -17,7 +17,10 @@ struct DetailView: View {
                 ScrollView(showsIndicators:false) {
                     VStack(){
                         Spacer()
+//                        Restaurant Main Image
                         KFImage(URL(string: vm.resultData?.imageURL ?? "")).resizable().frame(width: geometry.dw(width: 0.9),height: geometry.dh(height: 0.4)).clipShape(RoundedRectangle(cornerRadius: ProjectRadius.extraSmall.rawValue))
+                        
+//                        Restaurant name and go to map view
                         HStack {
                             Text(vm.resultData?.name ?? "")
                                 .modifier(DisplayLargeBold())
@@ -26,7 +29,7 @@ struct DetailView: View {
                             Button{
                                 vm.goToMap = true
                             }label: {
-                                Text("Look Location with Map")
+                                Text(LocalKeys.DetailView.lookLocationWithMap.rawValue.locale())
                                     .modifier(DisplayMediumBold())
                                     .foregroundStyle(Color.averlandSunset)
                             }.navigationDestination(isPresented: $vm.goToMap){
@@ -34,17 +37,19 @@ struct DetailView: View {
                             }
                             
                         }.padding(.top,ProjectPaddings.normal.rawValue)
+                        
+//                        Restaurant status and info
                         HStack(alignment:.center){
                             
                             Image(systemName: "door.left.hand.closed").resizable().frame(width: geometry.dw(width: 0.06),height: geometry.dh(height: 0.03))
                                 .foregroundStyle(Color.grotesqueGreen)
                             
                             vm.resultData?.isClosed == true ?
-                            Text("Closed")
+                            Text(LocalKeys.DetailView.close.rawValue.locale())
                                 .padding(.trailing,ProjectPaddings.normal.rawValue)
                                 .foregroundStyle(Color.scareubusSacer)
                             :
-                            Text("Open")
+                            Text(LocalKeys.DetailView.open.rawValue.locale())
                                 .padding(.trailing,ProjectPaddings.normal.rawValue)
                                 .foregroundStyle(Color.scareubusSacer)
                             
@@ -66,15 +71,17 @@ struct DetailView: View {
                                 
                         }.padding(.top,ProjectPaddings.extraSmall.rawValue)
                         
+                        
+//                        Restaurants categories
                         HStack{
-                            Text("Categories")
+                            Text(LocalKeys.DetailView.categories.rawValue.locale())
                                 .modifier(DisplayLargeBold())
                                 Spacer()
                         }.padding(.top,ProjectPaddings.large.rawValue)
                         
                         ScrollView(.horizontal,showsIndicators: false) {
                             HStack(spacing:20) {
-                                Spacer()
+                                
                                 ForEach(vm.resultData?.categories ?? [], id:\.title?.count){data in
                                     if let categoryTitle = data.title{
                                         DetailCategoryCard(title: categoryTitle)
@@ -86,8 +93,9 @@ struct DetailView: View {
                             }
                         }.padding(.top,ProjectPaddings.small.rawValue)
                         
+//                        Restaurant Photos
                         HStack{
-                            Text("Photos")
+                            Text(LocalKeys.DetailView.photos.rawValue.locale())
                                 .modifier(DisplayLargeBold())
                                 Spacer()
                         }.padding(.top,ProjectPaddings.large.rawValue)
