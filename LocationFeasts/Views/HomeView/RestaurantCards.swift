@@ -32,7 +32,7 @@ struct RestaurantCards: View {
                         
                 }.padding(.bottom,ProjectPaddings.large.rawValue)
            
-            }.background(Color.nero)
+            }.background(Color.neroo)
             .clipShape(RoundedRectangle(cornerRadius: ProjectRadius.large.rawValue))
            
         
