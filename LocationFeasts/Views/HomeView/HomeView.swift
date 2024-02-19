@@ -38,7 +38,7 @@ struct HomeView: View {
                     }
                   }, onCommit: {})
               }
-              .background(Color.nero)
+              .background(Color.neroo)
               .clipShape(RoundedRectangle(cornerRadius: ProjectRadius.large.rawValue))
               .padding(.trailing, ProjectPaddings.normal.rawValue)
 
@@ -180,7 +180,7 @@ struct AdAreaSub: View {
     ZStack {
       Rectangle()
         .frame(width: geometry.dw(width: 0.9), height: geometry.dh(height: 0.25))
-        .foregroundStyle(Color.nero).opacity(0.5)
+        .foregroundStyle(Color.neroo).opacity(0.5)
         .clipShape(RoundedRectangle(cornerRadius: ProjectRadius.large.rawValue))
 
       Text("Ad Area")

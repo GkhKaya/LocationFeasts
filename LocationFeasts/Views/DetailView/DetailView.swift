@@ -30,7 +30,7 @@ struct DetailView: View {
                                     .modifier(DisplayMediumBold())
                                     .foregroundStyle(Color.averlandSunset)
                             }.navigationDestination(isPresented: $vm.goToMap){
-                                HomeView()
+                                MapView(imageUrl: vm.resultData?.url ?? "", restaurantName: vm.resultData?.name ?? "", adress1: vm.resultData?.location?.address1 ?? "", adress2: vm.resultData?.location?.address2 ?? "", adress3: vm.resultData?.location?.address3 ?? "", latitude: vm.resultData?.coordinates?.latitude ?? 0.0, longitude: vm.resultData?.coordinates?.longitude ?? 0.0)
                             }
                             
                         }.padding(.top,ProjectPaddings.normal.rawValue)
