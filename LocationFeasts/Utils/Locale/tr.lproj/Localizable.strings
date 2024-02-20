@@ -2,22 +2,28 @@
   Localizable.strings
   LocationFeasts
 
-  Created by Gokhan Kaya on 3.02.2024.
+  Created by Gokhan Kaya on 20.02.2024.
   
 */
-"findNearbyRestaurants" = "Yakındaki Restorantları Bul";
-"whichFoodDoYouWantToFind" = "Hangi yemeği aramak istersin";
-"cheapRestaurant" = "Ucuz Restorantlar";
-"mediumPricedRestaurant" = "Orta Ücretli Restorantlar";
-"expensiveRestaurant"  = "Pahalı Restorantlar";
-"location" = "Lokasyon";
-"isClosed" = "Açık mı";
-"rating" = "Puan";
-"address" = "Adres";
-"restaurantIsNotExist" = "Restorant mevcut değil";
-"lookLocationWithMap" = "Haritada Gör";
-"categories" = "Kategoriler";
-"photos" = "Fotoğraflar";
-"open" = "Açık";
-"close" = "Kapalı";
 
+
+"findNearbyRestaurants" = "Find nearby restaurants";
+"whichFoodDoYouWantToFind" = "Which food do you want to find";
+"cheapRestaurant" = "Cheap restaurant";
+"mediumPricedRestaurant" = "Medium priced restaurant";
+"expensiveRestaurant"  = "Expensive Restaurant";
+"location" = "location";
+"isClosed" = "Is Closed";
+"rating" = "Rating";
+"address" = "address";
+"restaurantIsNotExist" = "Restaurant is not exist";
+"lookLocationWithMap" = "Look Location with Map";
+"categories" = "Categories";
+"photos" = "Photos";
+"open" = "Opem";
+"close" = "Close";
+"interface" = "Arayüz";
+"notifications" = "Bildirimler";
+"darkMode" = "Karanlık Mod";
+"turkish" = "Türkçe";
+"english" = "İngilizce";

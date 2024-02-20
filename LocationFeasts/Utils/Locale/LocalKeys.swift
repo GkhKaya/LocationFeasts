@@ -27,6 +27,16 @@ struct LocalKeys {
         case open = "open"
         case close = "close"
     }
+    
+    enum SettingView: String{
+        case interface = "interface"
+        case darkMode = "darkMode"
+        case notifications = "notifications"
+        case turkish = "turkish"
+        case english = "english"
+    }
+    
+    
 }
 
 extension String{

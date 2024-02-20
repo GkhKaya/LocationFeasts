@@ -163,7 +163,7 @@ struct TitleSub: View {
         .multilineTextAlignment(.leading)
       Spacer()
       NavigationLink {
-        ContentView()
+        SettingsView()
       } label: {
         Image(systemName: "gear")
           .resizable()

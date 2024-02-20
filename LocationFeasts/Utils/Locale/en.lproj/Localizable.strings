@@ -2,9 +2,11 @@
   Localizable.strings
   LocationFeasts
 
-  Created by Gokhan Kaya on 3.02.2024.
+  Created by Gokhan Kaya on 20.02.2024.
   
 */
+
+
 "findNearbyRestaurants" = "Find nearby restaurants";
 "whichFoodDoYouWantToFind" = "Which food do you want to find";
 "cheapRestaurant" = "Cheap restaurant";
@@ -20,3 +22,8 @@
 "photos" = "Photos";
 "open" = "Opem";
 "close" = "Close";
+"interface" = "Arayüz";
+"notifications" = "Bildirimler";
+"darkMode" = "Karanlık Mod";
+"turkish" = "Turkish";
+"english" = "English";
